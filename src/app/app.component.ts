@@ -43,14 +43,14 @@ export class AppComponent implements OnInit {
     var data = google.visualization.arrayToDataTable(this.dataArray);
 
     var options = {
-      title: 'Photo Diode differentials',
+      title: 'Infrared Temperature Sensors',
       legend: { position: 'bottom' },
       pointsVisible: false,
       pointSize: 4,
       lineWidth: 2,
       interpolateNulls: true,
       yAxis: {
-        title: 'Photo Diode Differential'
+        title: 'Temperature (°C)'
       },
       hAxis: {
         gridlines: {
@@ -68,14 +68,14 @@ export class AppComponent implements OnInit {
 
 
   initialiseDataArray() {
-    this.dataArray = [['Time', 'Photo Diode 1', 'Photo Diode 2', 'Photo Diode 3']];
+    this.dataArray = [['Time', 'Object Temp 1', 'Object Temp 2', 'Die Temp 1', 'Die Temp 2']];
   }
 
 
   startListening() {
     console.log('Starting listening');
 
-    this.myWebSocket = webSocket('ws://localhost:8080');
+    this.myWebSocket = webSocket('ws://localhost:8082'); // must match the port that the backend code is using
     this.myWebSocket.subscribe(
       (msg) => {
         
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit {
         if (check.not.array.of.number(msg.data)) {
           console.error('Websocket msg must have a data property that is an array of numbers');
         }
-        const dataLength = 3;
+        const dataLength = 4;
         if (msg.data.length !== dataLength) {
           console.error(`Websocket data array must have a length of ${dataLength}`)
         }

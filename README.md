@@ -1,3 +1,16 @@
+## How to serve locally on a different port 
+
+(e.g. for if you have another angular project running at the same time)
+
+`ng serve --port 4201` 
+
+
+## How to serve locally on a different port 
+
+(e.g. for if you have another angular project running at the same time)
+
+`ng serve --port 4201` 
+
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
